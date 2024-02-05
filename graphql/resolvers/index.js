@@ -1,10 +1,21 @@
 const Account = require('../../models/account')
 
 module.exports = {
+  account: async args => {
+    try {
+      const { accountId } = args.account
+      return await Account.findById(accountId);
+    }
+    catch (error) {
+        throw error
+    }
+  },
 
   accounts: async () => {
     try {
        const accountsFetched = await Account.find()
+                                            .sort({ createdAt: -1 })
+                                            .limit(100)
         return accountsFetched.map(account => {
             return {
                 ...account._doc,
@@ -36,5 +47,40 @@ module.exports = {
     catch (error) {
         throw error
     }
-  }
+  },
+
+  deleteAccount: async args => {
+    try {
+      const { accountId } = args.account
+      const success = (
+        await Account.deleteOne(
+          { _id: accountId }
+        )
+      ).deletedCount;
+      return success;
+    }
+    catch (error) {
+      throw error
+    }
+  },
+
+  updateAccount: async args => {
+    try {
+      const { accountId, name, accountType, email, interests } = args.account
+      const success = (
+        await Account.updateOne(
+          { _id: accountId },
+          {
+            name: name,
+            email: email
+          }
+        )
+      ).modifiedCount; // returns an object similarly to the wasDeleted
+      return success; // returns 0 if an ID can't be found
+    }
+    catch (error) {
+      throw error
+    }
+  },
+  
 }
