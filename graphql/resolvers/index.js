@@ -7,7 +7,7 @@ module.exports = {
       return await Account.findById(accountId);
     }
     catch (error) {
-        throw error
+      throw error
     }
   },
 
@@ -17,18 +17,18 @@ module.exports = {
                                             .sort({ createdAt: -1 })
                                             .limit(100)
         return accountsFetched.map(account => {
-            return {
-                ...account._doc,
-                _id: account.id,
-                name: account.name,
-                email: account.email,
-                accountType: account.accountType,
-                interests: account.interests,
-                createdAt: new Date(account._doc.createdAt).toISOString() }
+          return {
+            ...account._doc,
+            _id: account.id,
+            name: account.name,
+            email: account.email,
+            accountType: account.accountType,
+            interests: account.interests,
+            createdAt: new Date(account._doc.createdAt).toISOString() }
         })
     }
     catch (error) {
-        throw error
+      throw error
     }
   },
 
@@ -36,16 +36,16 @@ module.exports = {
     try {
       const { name, accountType, email, interests } = args.account
       const account = new Account({
-          name,
-          email,
-          accountType,
-          interests,
+        name,
+        email,
+        accountType,
+        interests,
       })
       const newAccount = await account.save()
       return { ...newAccount._doc, _id: newAccount.id }
     }
     catch (error) {
-        throw error
+      throw error
     }
   },
 
