@@ -1,3 +1,17 @@
-In this guide, we will build from scratch an API with GraphQL, Node JS, Express, and MongoDB. So, let's start by answering an important question: what is GraphQL?
+#### Start database
+```
+mongosh
+```
+<img width="1087" alt="Screenshot 2024-02-06 at 10 22 38 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/629c39cd-1e79-49a7-8b74-1cbabaf2205a">
 
-[Continue reading](https://www.ibrahima-ndaw.com/blog/graphql-api-express-mongodb/)
+
+#### Install dependencies
+```
+npm install
+```
+
+#### Start Application
+```
+npm start
+```
+<img width="924" alt="Screenshot 2024-02-06 at 10 22 45 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/9b323834-bb0f-4e33-abd9-67e27072cc2a">
