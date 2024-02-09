@@ -16,11 +16,75 @@ npm start
 ```
 <img width="924" alt="Screenshot 2024-02-06 at 10 22 45 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/9b323834-bb0f-4e33-abd9-67e27072cc2a">
 
-#### Mutation: Get Account
-<img width="1066" alt="Screenshot 2024-02-06 at 10 08 13 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/97a47698-95be-4060-9052-ca5f4efd5680">
+#### Query: Get Account
+```graphql
+query Account {
+    account(account: { _id: "65c5f1ce24bcab468acf0683" }) {
+        name
+        email
+        accountType
+        createdAt
+        _id
+    }
+}
+```
 
-#### Mutation: List Accounts
-<img width="1067" alt="Screenshot 2024-02-06 at 10 19 38 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/83356db3-ebb5-4439-b04b-79b6a1a9615f">
+#### Query: List Accounts
+```graphql
+  query Account {
+      accounts {
+          name
+          email
+          accountType
+          createdAt
+          _id
+      }
+  }
+```
 
-#### Mutation: Create Accounts
-<img width="1066" alt="Screenshot 2024-02-06 at 10 08 04 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/aa656797-72d4-4dc0-b7c9-5a0cfffe7056">
+#### Mutation: Create Account
+```graphql
+mutation CreateAccount {
+    createAccount(
+        account: {
+            name: "Nicolas GONZALEZ"
+            email: "nicolasgonzalez180@gmail.com"
+            accountType: "Client"
+        }
+    ) {
+        _id
+        name
+        email
+        accountType
+        createdAt
+    }
+}
+```
+#### Mutation: Update Account
+```graphql
+mutation UpdateAccount {
+    updateAccount(
+        account: {
+            _id: "65c5f1ce24bcab468acf0683"
+            name: "Nicolas GONZALEZ"
+            email: "nicolasgonzalez180@gmail.com"
+            accountType: "client"
+        }
+    ) {
+        _id
+        name
+        email
+        accountType
+        createdAt
+    }
+}
+```
+
+#### Mutation: Delete Account
+```graphql
+mutation DeleteAccount {
+    deleteAccount(account: { _id: "65c5ec825e6f2d03b7829079" }) {
+        success
+    }
+}
+```
