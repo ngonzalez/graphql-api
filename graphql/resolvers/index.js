@@ -50,7 +50,7 @@ module.exports = {
 
   updateAccount: async args => {
     try {
-      const { _id, name, email, accountType } = args.account
+      const { _id, name, email, accountType, interests } = args.account
       let account = await Account.findById(_id);
       await Account.updateOne(
         { _id: _id },
@@ -58,6 +58,7 @@ module.exports = {
           name: name,
           email: email,
           accountType: accountType,
+          interests: interests,
         }, function(err, res) {
           return {
             success: true
