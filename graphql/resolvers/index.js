@@ -3,8 +3,7 @@ const Account = require('../../models/account')
 module.exports = {
   account: async args => {
     try {
-      const { accountId } = args.account
-      return await Account.findById(accountId);
+      return await Account.findById(args.account['_id']);
     }
     catch (error) {
       throw error
@@ -34,7 +33,7 @@ module.exports = {
 
   createAccount: async args => {
     try {
-      const { name, accountType, email, interests } = args.account
+      const { name, email, accountType, interests } = args.account
       const account = new Account({
         name,
         email,
@@ -49,38 +48,40 @@ module.exports = {
     }
   },
 
-  deleteAccount: async args => {
+  updateAccount: async args => {
     try {
-      const { accountId } = args.account
-      const success = (
-        await Account.deleteOne(
-          { _id: accountId }
-        )
-      ).deletedCount;
-      return success;
+      const { _id, name, email, accountType } = args.account
+      let account = await Account.findById(_id);
+      await Account.updateOne(
+        { _id: _id },
+        {
+          name: name,
+          email: email,
+          accountType: accountType,
+        }, function(err, res) {
+          return {
+            success: true
+          };
+        }
+      )
     }
     catch (error) {
       throw error
     }
   },
 
-  updateAccount: async args => {
+  deleteAccount: async args => {
     try {
-      const { accountId, name, accountType, email, interests } = args.account
-      const success = (
-        await Account.updateOne(
-          { _id: accountId },
-          {
-            name: name,
-            email: email
-          }
-        )
-      ).modifiedCount; // returns an object similarly to the wasDeleted
-      return success; // returns 0 if an ID can't be found
+      await Account.deleteOne(
+        { _id: args.account['_id'] }
+      )
+      return {
+        success: true
+      };
     }
     catch (error) {
       throw error
     }
   },
-  
+
 }
