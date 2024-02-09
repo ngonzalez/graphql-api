@@ -39,7 +39,7 @@ module.exports = {
         email,
         accountType,
         interests,
-      })
+      });
       const newAccount = await account.save()
       return { ...newAccount._doc, _id: newAccount.id }
     }
@@ -51,7 +51,6 @@ module.exports = {
   updateAccount: async args => {
     try {
       const { _id, name, email, accountType, interests } = args.account
-      let account = await Account.findById(_id);
       await Account.updateOne(
         { _id: _id },
         {
