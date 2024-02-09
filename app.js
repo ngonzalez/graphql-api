@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const graphqlSchema = require('./graphql/schema')
 const graphqlResolvers = require('./graphql/resolvers')
 
-
 const app = express()
 
 app.use('/graphql', graphqlHttp({
@@ -14,7 +13,7 @@ app.use('/graphql', graphqlHttp({
 }))
 
 const uri = `mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.3`
-const options = {useNewUrlParser: true, useUnifiedTopology: true}
+const options = { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }
 
 mongoose.connect(uri, options)
         .then(() => app.listen(3000, console.log('Server is running')))
