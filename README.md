@@ -14,7 +14,7 @@ npm install
 ```
 npm start
 ```
-<img width="924" alt="Screenshot 2024-02-06 at 10 22 45 AM" src="https://github.com/ngonzalez/graphql-api/assets/26479/9b323834-bb0f-4e33-abd9-67e27072cc2a">
+<img width="443" alt="Screenshot 2024-02-09 at 3 00 38 PM" src="https://github.com/ngonzalez/graphql-api/assets/26479/159d1ff7-dc43-4de5-b990-5333f95a25c2">
 
 #### Query: Get Account
 ```graphql
